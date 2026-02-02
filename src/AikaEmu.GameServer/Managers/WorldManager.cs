@@ -26,6 +26,15 @@ namespace AikaEmu.GameServer.Managers
             _prans = new ConcurrentDictionary<ushort, Pran>();
         }
 
+        public BaseUnit GetUnit(ushort conId)
+        {
+            if (_characters.TryGetValue(conId, out var character)) return character;
+            if (_mobs.TryGetValue(conId, out var mob)) return mob;
+            if (_npcs.TryGetValue(conId, out var npc)) return npc;
+            if (_prans.TryGetValue(conId, out var pran)) return pran;
+            return null;
+        }
+
         public Npc GetNpc(ushort conId)
         {
             return _npcs.ContainsKey(conId) ? _npcs[conId] : null;

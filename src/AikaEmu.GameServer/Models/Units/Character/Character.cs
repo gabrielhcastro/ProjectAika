@@ -51,7 +51,7 @@ namespace AikaEmu.GameServer.Models.Units.Character
 
         public void ActivatePran()
         {
-            var item = Inventory.GetItem(SlotType.Equipments, (ushort) ItemType.PranStone);
+            var item = Inventory.GetItem(SlotType.Equipments, (ushort)ItemType.PranStone);
             if (item == null) return;
             var pran = new Pran.Pran(Account, item.DbId);
             if (pran.Load())
@@ -135,7 +135,7 @@ namespace AikaEmu.GameServer.Models.Units.Character
 
         public void TeleportTo(float x, float y)
         {
-            var pos = (Position) Position.Clone();
+            var pos = (Position)Position.Clone();
             pos.CoordX = x;
             pos.CoordY = y;
 

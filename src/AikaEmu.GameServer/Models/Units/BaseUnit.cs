@@ -19,7 +19,7 @@ namespace AikaEmu.GameServer.Models.Units
 
         public virtual void SetPosition(float x, float y)
         {
-            var pos = (Position) Position.Clone();
+            var pos = (Position)Position.Clone();
             pos.CoordX = x;
             pos.CoordY = y;
 
@@ -48,7 +48,7 @@ namespace AikaEmu.GameServer.Models.Units
 
         public virtual void SetRotation(int rotation)
         {
-            var pos = (Position) Position.Clone();
+            var pos = (Position)Position.Clone();
             pos.Rotation = rotation;
 
             SetPosition(pos);

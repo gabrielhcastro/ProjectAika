@@ -21,7 +21,7 @@ namespace AikaEmu.GameServer.Network
         PlaySound = 0x1015,
         UpdatePranExperience = 0x1016,
         PranEffect = 0x1017,
-        SendXpGoldAnimation = 0x101B,
+        SendXpGoldAnimation = 0x11B, // OK
         UpdateEquipDur = 0x102B,
         CurNationInfo = 0x936,
         UpdateNationGuild = 0x1030,
@@ -58,7 +58,7 @@ namespace AikaEmu.GameServer.Network
         SendCancelTrade = 0x3018,
         SendPersonalStore = 0x3019,
         UpdateSkillBar = 0x301E,
-        SendCastSkill = 0x3020,
+        SendCastSkill = 0x302, // OK
         SendPartyInvite = 0x3022,
         SendPartyInfo = 0x3026,
         SendEnchantResult = 0x302E,
@@ -68,7 +68,7 @@ namespace AikaEmu.GameServer.Network
         CreateGuildBox = 0x3041,
         SendUnitSpawn = 0x349, // OK
         EventItemDone = 0x3059, 
-        SendMobSpawn = 0x305E,
+        SendMobSpawn = 0x35E, // OK
         UpdateActiveTitle = 0x361, // OK
         SendRequestFriend = 0x3072,
         CoreUpgradeResult = 0x305F,
@@ -131,7 +131,7 @@ namespace AikaEmu.GameServer.Network
         RequestUpdateSkillBar = 0x301E,
         CloseMyPersonalStore = 0x3018,
         OpenMyPersonalStore = 0x3019,
-        RequestCastSkill = 0x320, // OK
+        RequestCastSkill = 0x302, // OK
         InviteToParty = 0x3022,
         InviteToPartyResult = 0x3023,
         LeaveParty = 0x3024,
@@ -154,7 +154,7 @@ namespace AikaEmu.GameServer.Network
         RequestTokenResult = 0x39D, // OK
         RequestStoneCombination = 0x30A4,
         MoveUnit = 0x301, // OK
-        RequestUseSkill = 0x30C0,
+        RequestUseSkill = 0x302, // OK,
         MoveItem = 0x70F, // OK
         RequestNationReliques = 0x3852,
         RequestToken = 0xF02, // OK

@@ -7,7 +7,17 @@ namespace AikaEmu.GameServer.Models.Units.Mob
 
         public int Unk7 { get; set; }
 
-        public uint Hp1 { get; set; }
+        private uint _hp1;
+        public uint Hp1
+        {
+            get => _hp1;
+            set
+            {
+                _hp1 = value;
+                Hp = (int)value;
+                MaxHp = (int)value;
+            }
+        }
         public uint Hp2 { get; set; }
         public uint Hp3 { get; set; }
 
