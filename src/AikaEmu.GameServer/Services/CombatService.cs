@@ -24,11 +24,6 @@ namespace AikaEmu.GameServer.Services
             int finalDamage = 0;
             DamageType damageType = DamageType.Normal;
 
-            // Imunidade
-            // TODO: Implementar verificação de imunidade do alvo
-            // if (target.IsImmune) { damageType = DamageType.Immune; return (0, damageType); }
-
-            // Determinar se é ataque físico ou mágico
             bool isPhysical = IsPhysicalAttack(attacker, skillId);
 
             // Obter atributos de ataque e defesa
@@ -70,19 +65,15 @@ namespace AikaEmu.GameServer.Services
                 targetEvasion = 5; // Placeholder
             }
 
-            // 1. Cálculo de Acerto/Esquiva (Miss)
             damageType = DetermineHitOrMiss(attackerAccuracy, targetEvasion);
             if (damageType == DamageType.Miss) return (0, DamageType.Miss);
 
-            // 2. Cálculo de Penetração de Defesa
             int effectiveDefense = targetDefense - ((targetDefense / 100) * attackerPenetration);
             if (effectiveDefense < 0) effectiveDefense = 0;
 
-            // 3. Cálculo de Dano Base
             finalDamage = attackerAttack - (effectiveDefense / 8);
             if (finalDamage <= 0) finalDamage = 1; // Dano mínimo de 1
 
-            // 4. Cálculo de Crítico
             DamageType criticalType = DetermineCritical(attackerCritical, targetCriticalResistance);
             if (criticalType == DamageType.Critical)
             {
@@ -93,7 +84,11 @@ namespace AikaEmu.GameServer.Services
 
             // TODO: Adicionar bônus/reduções de equipamentos, buffs, etc.
 
-            return (finalDamage, damageType);
+            // Random variability no dano
+            Random rand = new Random();
+            int randomDamage = rand.Next((int)(finalDamage * 0.8), finalDamage);
+
+            return (randomDamage, damageType);
         }
 
         private static bool IsPhysicalAttack(BaseUnit attacker, ushort skillId)
