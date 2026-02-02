@@ -1,7 +1,6 @@
 using AikaEmu.GameServer.Models.Units;
 using AikaEmu.GameServer.Network.GameServer;
 using AikaEmu.Shared.Network;
-using AikaEmu.GameServer.Services;
 
 namespace AikaEmu.GameServer.Network.Packets.Game
 {
@@ -13,10 +12,9 @@ namespace AikaEmu.GameServer.Network.Packets.Game
         private readonly ushort _skillId;
         private readonly int _damage;
         private readonly int _targetHp;
-        private readonly int _type;
         private readonly Position _pos;
 
-        public UpdateWithSkillEffect(ushort conId, ushort targetId, ushort unkType, ushort skillId, int damage, int targetHp, DamageType damageType, Position pos)
+        public UpdateWithSkillEffect(ushort conId, ushort targetId, ushort unkType, ushort skillId, int damage, int targetHp, Position pos)
         {
             _conId = conId;
             _targetId = targetId;
@@ -24,7 +22,6 @@ namespace AikaEmu.GameServer.Network.Packets.Game
             _skillId = skillId;
             _damage = damage;
             _targetHp = targetHp;
-            _type = (byte)damageType;
             _pos = pos;
 
             Opcode = (ushort)GameOpcode.UpdateWithSkillEffect;
@@ -34,7 +31,7 @@ namespace AikaEmu.GameServer.Network.Packets.Game
         public override PacketStream Write(PacketStream stream)
         {
             byte a = 26;
-            byte c = 1;
+            byte c = 0;
             var e = 0;
             var f = 0;
             stream.Write((uint)_skillId);
@@ -52,7 +49,7 @@ namespace AikaEmu.GameServer.Network.Packets.Game
             stream.Write(0);
             stream.Write(0);
             stream.Write(_targetId);
-            stream.Write(_type); // Tipo de Dano (critical, normal, miss, etc.)
+            stream.Write((byte)c);
             stream.Write((byte)a);
             stream.Write(_damage);   // Dano que aparecerá flutuando
             stream.Write(e);

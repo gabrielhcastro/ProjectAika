@@ -84,11 +84,7 @@ namespace AikaEmu.GameServer.Services
 
             // TODO: Adicionar bônus/reduções de equipamentos, buffs, etc.
 
-            // Random variability no dano
-            Random rand = new Random();
-            int randomDamage = rand.Next((int)(finalDamage * 0.8), finalDamage);
-
-            return (randomDamage, damageType);
+            return (finalDamage, damageType);
         }
 
         private static bool IsPhysicalAttack(BaseUnit attacker, ushort skillId)
