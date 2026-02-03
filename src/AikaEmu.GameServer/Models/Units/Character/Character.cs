@@ -48,7 +48,6 @@ namespace AikaEmu.GameServer.Models.Units.Character
 
         public bool IsInternalDisconnect { get; set; }
         public ushort GuildId { get; internal set; }
-
         public void ActivatePran()
         {
             var item = Inventory.GetItem(SlotType.Equipments, (ushort)ItemType.PranStone);
