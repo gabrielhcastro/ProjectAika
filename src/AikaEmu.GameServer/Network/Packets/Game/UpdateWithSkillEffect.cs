@@ -1,6 +1,7 @@
 using AikaEmu.GameServer.Models.Units;
 using AikaEmu.GameServer.Network.GameServer;
 using AikaEmu.Shared.Network;
+using AikaEmu.GameServer.Services;
 
 namespace AikaEmu.GameServer.Network.Packets.Game
 {
@@ -13,8 +14,9 @@ namespace AikaEmu.GameServer.Network.Packets.Game
         private readonly int _damage;
         private readonly int _targetHp;
         private readonly Position _pos;
+        private readonly DamageType _damageType;
 
-        public UpdateWithSkillEffect(ushort conId, ushort targetId, ushort unkType, ushort skillId, int damage, int targetHp, Position pos)
+        public UpdateWithSkillEffect(ushort conId, ushort targetId, ushort unkType, ushort skillId, int damage, int targetHp, DamageType damageType, Position pos)
         {
             _conId = conId;
             _targetId = targetId;
@@ -22,6 +24,7 @@ namespace AikaEmu.GameServer.Network.Packets.Game
             _skillId = skillId;
             _damage = damage;
             _targetHp = targetHp;
+            _damageType = damageType;
             _pos = pos;
 
             Opcode = (ushort)GameOpcode.UpdateWithSkillEffect;
@@ -49,9 +52,9 @@ namespace AikaEmu.GameServer.Network.Packets.Game
             stream.Write(0);
             stream.Write(0);
             stream.Write(_targetId);
-            stream.Write((byte)c);
+            stream.Write((byte)_damageType); // Tipo de dano
             stream.Write((byte)a);
-            stream.Write(_damage);   // Dano que aparecerá flutuando
+            stream.Write(_damage); // Dano que aparecerá flutuando
             stream.Write(e);
             stream.Write(f);
             stream.Write(_targetHp); // HP atual repetido

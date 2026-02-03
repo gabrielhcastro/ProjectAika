@@ -45,7 +45,7 @@ namespace AikaEmu.GameServer.Network.Packets.Client
 
                     Log.Debug("Target {0} (ID: {1}) took {2} damage ({4}). New HP: {3}", targetUnit.Name, targetUnit.Id, calculatedDamage, targetUnit.Hp, damageType);
 
-                    Connection.SendPacket(new UpdateWithSkillEffect(Connection.Id, targetConId, unkType, skillId, calculatedDamage, targetUnit.Hp, Connection.ActiveCharacter.Position));
+                    Connection.SendPacket(new UpdateWithSkillEffect(Connection.Id, targetConId, unkType, skillId, calculatedDamage, targetUnit.Hp, damageType, Connection.ActiveCharacter.Position));
 
                     if (targetUnit.Hp == 0)
                     {
@@ -61,7 +61,7 @@ namespace AikaEmu.GameServer.Network.Packets.Client
                 else // Se o ataque foi Miss, Immune ou Block
                 {
                     Log.Debug("Attack on Target {0} (ID: {1}) resulted in {2}", targetUnit.Name, targetUnit.Id, damageType);
-                    Connection.SendPacket(new UpdateWithSkillEffect(Connection.Id, targetConId, unkType, skillId, 0, targetUnit.Hp, Connection.ActiveCharacter.Position));
+                    Connection.SendPacket(new UpdateWithSkillEffect(Connection.Id, targetConId, unkType, skillId, 0, targetUnit.Hp, damageType, Connection.ActiveCharacter.Position));
                 }
             }
         }
